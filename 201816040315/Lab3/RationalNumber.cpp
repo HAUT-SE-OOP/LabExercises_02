@@ -10,114 +10,112 @@ using namespace std;
 /* Implement the RationalNumber constructor. Validate d first to ensure that
    it is a positive number and set it to 1 if not. Call the reduction utility
    function at the end */
-RationalNumber::RationalNumber(int n,int d)
+RationalNumber::RationalNumber(int a,int b)
 {
-    if(d < 0)
-        denominator = 1;
-    else
-        denominator = d;
-    numerator = n;
-    reduction();
-
-}
+    numerator=a;
+    denominator=b;
+}//end rational number constructor
 // overloaded + operator
 /* Write definition for overloaded operator + */
-RationalNumber RationalNumber::operator+(const RationalNumber & r)
+RationalNumber RationalNumber::operator+(const RationalNumber &xyy)const
 {
-    if(denominator == r.denominator)
-        return RationalNumber(numerator + r.numerator , r.denominator);
-    else
-        return RationalNumber(numerator*r.denominator + denominator*r.numerator , denominator*r.denominator);
-}
-
+    RationalNumber temp;//define a temp data
+    temp.denominator=denominator*xyy.denominator;//denominator = denominator*denominator
+    temp.numerator=numerator*xyy.denominator+denominator*xyy.numerator;//numerator=numerator *denominator+denominator*numerator
+    temp.reduction();
+    return temp;
+}//end function overloaded operator +
 // overloaded - operator
 /* Write definition for overloaded operator - */
-RationalNumber RationalNumber::operator-(const RationalNumber & r)
+RationalNumber RationalNumber::operator-(const RationalNumber &xyy)const
 {
-    if(denominator == r.denominator)
-        return RationalNumber(numerator - r.numerator , r.denominator);
-    else
-        return RationalNumber(numerator*r.denominator + denominator*r.numerator , denominator*r.denominator);
-}
+    RationalNumber temp;//define a temp data
+    temp.denominator=denominator*xyy.denominator;//denominator = denominator*denominator
+    temp.numerator=numerator*xyy.denominator-denominator*xyy.numerator;//numerator=numerator*denominator - denominator*numerator
+    temp.reduction();
+    return temp;
+
+}//end function overloaded operator -
 // overloaded * operator
 /* Write definition for overloaded operator * */
-RationalNumber RationalNumber::operator*(const RationalNumber & r)
+RationalNumber RationalNumber::operator*(const RationalNumber &xyy)const
 {
-    return RationalNumber(numerator * r.numerator , denominator * r.denominator);
-}
+    RationalNumber temp;//define a temp data
+    temp.denominator=denominator *xyy.denominator;//denominator=denominator*denominator
+    temp.numerator=numerator*xyy.numerator;//numerator = numerator*numerator
+    temp.reduction();
+    return temp;
+}//end function overloaded operator *
 // overloaded / operator
 /* Write definition for overloaded operator /. Check if the client is
    attempting to divide by zero and report an error message if so */
-RationalNumber RationalNumber::operator/(const RationalNumber & r)
+RationalNumber RationalNumber::operator/(const RationalNumber &xyy)const
 {
-    if(r.denominator == 0)
-        cout<<"Can't divide by zero！"<<endl;
-    else
-    return RationalNumber(numerator*r.denominator , denominator*r.numerator);
-}
+    RationalNumber temp;
+    //if(denominator!=0)
+        temp.denominator=denominator*xyy.numerator;//denominator =denominator*numerator
+    //if(xyy.denominator!=0)
+        temp.numerator=numerator*xyy.denominator;//numerator=numerator*denominator
+    temp.reduction();
+    return temp;
+}//end function overloaded operator /
 // overloaded > operator
 /* Write definition for operator > */
-bool RationalNumber::operator>(const RationalNumber & r)
+bool RationalNumber::operator>(const RationalNumber &xyy)const
 {
-    if((numerator < r.numerator && denominator == r.numerator)|| denominator > r.denominator)
-        return false;
-    else
+    if(numerator*xyy.denominator-xyy.numerator*denominator >0)
         return true;
-}
+    else
+        return false;
+}//end function overloaded operator >
 
 // overloaded < operator
 /* Write definition for operator < */
-bool RationalNumber::operator<(const RationalNumber & r)
+bool RationalNumber::operator<(const RationalNumber &xyy)const
 {
-    if((numerator < r.numerator && denominator == r.numerator)|| denominator > r.denominator)
+    if(numerator*xyy.denominator-xyy.numerator*denominator<0)
         return true;
     else
         return false;
-}
-
+}//end function overloaded operator <
 // overloaded >= operator
 /* Write definition for operator >= */
-bool RationalNumber::operator>=(const RationalNumber & r)
+bool RationalNumber::operator>=(const RationalNumber &xyy)const
 {
-    if((numerator < r.numerator && denominator == r.numerator)|| denominator > r.denominator)
-        return false;
-    else if(numerator == r.numerator && denominator == r.numerator)
+    if(numerator*xyy.denominator-xyy.numerator*denominator>=0)
         return true;
     else
-        return true;
-}
+        return false;
+}//end function overloaded operator >=
+
 // overloaded <= operator
 /* Write definition for operator <= */
-bool RationalNumber::operator<=(const RationalNumber & r)
+bool RationalNumber::operator<=(const RationalNumber &xyy)const
 {
-    if((numerator < r.numerator && denominator == r.numerator)|| denominator > r.denominator)
-        return true;
-    else if(numerator == r.numerator && denominator == r.numerator)
+    if(numerator*xyy.denominator-xyy.numerator*denominator<=0)
         return true;
     else
         return false;
-}
-
+}//end function overloaded operator<=
 // overloaded == operator
 /* Write definition for operator == */
-bool RationalNumber::operator==(const RationalNumber & r)
+bool RationalNumber::operator==(const RationalNumber &xyy)const
 {
-    if(numerator == r.numerator && denominator == r.numerator)
+    if(numerator*xyy.denominator-xyy.numerator*denominator==0)
         return true;
     else
         return false;
-}
+}//end function overloaded operator==
 
 // overloaded != operator
 /* Write definition for operator != */
-bool RationalNumber::operator!=(const RationalNumber & r)
+bool RationalNumber::operator!=(const RationalNumber &xyy)const
 {
-    if(numerator == r.numerator && denominator == r.numerator)
-        return false;
-    else
+    if(numerator*xyy.denominator-xyy.numerator*denominator!=0)
         return true;
-}
-
+    else
+        return false;
+}//end function overloaded operator!=
 // function printRational definition
 void RationalNumber::printRational() const
 {

@@ -45,7 +45,7 @@ HugeInt::HugeInt( const char *string )
 int HugeInt::getLength() const
 {
     int i;
-   for ( int i = 0; i <= 29; i++ )
+   for (  i = 0; i <= 29; i++ )
       if ( integer[ i ] != 0 )
          break; // break when first digit is reached
 
@@ -93,113 +93,75 @@ HugeInt HugeInt::operator+( const char *op2 ) const
    return *this + HugeInt( op2 );
 } // end function operator+
 
-HugeInt HugeInt::operator-( const HugeInt &op2 ) const
-{
-   HugeInt temp; // temporary result
-   int carry = 0;
-
-   for ( int i = 29; i >= 0; i-- )
-   {
-      temp.integer[ i ] =
-         integer[ i ] - op2.integer[ i ] - carry;
-
-      // determine whether to carry a 1
-      if ( temp.integer[ i ] <0 )
-      {
-         temp.integer[ i ] += 10;  // reduce to 0-9
-         carry = 1;
-      } // end if
-      else // no carry
-         carry = 0;
-   } // end for
-
-   return temp; // return copy of temporary object
-}
-HugeInt HugeInt::operator-( int op2 ) const
-{
-   // convert op2 to a HugeInt, then invoke
-   // operator+ for two HugeInt objects
-   return *this - HugeInt( op2 );
-}
-HugeInt HugeInt::operator-( const char *op2 ) const
-{
-   // convert op2 to a HugeInt, then invoke
-   // operator+ for two HugeInt objects
-   return *this + HugeInt( op2 );
-}
 // equality operator; HugeInt == HugeInt
 /* Write a definition for the == operator */
-bool HugeInt::operator==(const HugeInt &tem)const
+bool HugeInt::operator==(HugeInt &abs)//function for equal operator
 {
-    int i;
-    if(tem.getLength()!=getLength())
-        return false;
-    else
-        for(i=0;i<getLength();i++)
+    for(int i=0;i<30;i++)
     {
-        if(tem.integer[i]!=integer[i])
-            return false;
+        if(integer[i]!=abs.integer[i])//judge whether the every element is equal or not
+            return false;//if one element is not equal return false
     }
-}
+    return true;//if all element are equal,return true
+}//end function equal operator
+
 // inequality operator; HugeInt != HugeInt
 /* Write a definition for the != operator
    by calling the == operator */
-bool HugeInt::operator!=(const HugeInt &tem)const
+bool HugeInt::operator!=(HugeInt &abs)//function for inequality
 {
-    if(tem==*this)
-        return false;
-    else
-        return true;
-}
+    if(*this==abs)
+        return false;//if two elements are equal,return false
+    return true;//otherwise return true
+}//end function inequality
+
 // less than operator; HugeInt < HugeInt
 /* Write a definition for the < operator */
-bool HugeInt::operator<(const HugeInt &tem)const
+bool HugeInt::operator<(HugeInt &abs)
 {
-    int i;
-    if(getLength()<tem.getLength())
-        return true;
-    if(tem.getLength()==getLength())
+    for(int i=0;i<30;i++)
     {
-        for(i=0;i<=29;i++)
-    {
-        if(integer[i]<tem.integer[i])
-            return true;
+        if(integer[i]<abs.integer[i])//judge which element is bigger
+            return true;//if right is bigger,return true
+        else if(integer[i]>abs.integer[i])//if left is bigger
+            return false;//return false
     }
-    }
-    if(tem==*this||getLength()>tem.getLength())
-        return false;
+    return false;//if left is equal with right,return false
+}//end function less than operator function
 
-}
 // less than or equal operator; HugeInt <= HugeInt
 /* Write a definition for the <= operator
    by calling the < and == operators */
-bool HugeInt::operator<=(const HugeInt &tem)const
+bool HugeInt::operator<=(HugeInt &abs)
 {
-    if(*this<tem||tem==*this)
-        return true;
-    else
-        return false;
-}
+    if(*this<abs)
+        return true;//less than return true
+    if(*this==abs)
+        return true;//equal return true
+    return false;//otherwise return false
+}//end function less than and equal operator
+
 // greater than operator; HugeInt > HugeInt
 /* Write a definition for the > operator
    by calling the <= operator */
-bool HugeInt::operator>(const HugeInt &tem)const
+bool HugeInt::operator>(HugeInt &abs)
 {
-    if(*this<=tem)
-        return false;
-    else
-        return true;
-}
+    if(*this<=abs)
+        return false;//less than and equal return false
+    return true;//otherwise return true
+}//end function greater than operator function
 // greater than or equal operator; HugeInt >= HugeInt
 /* Write a definition for the >= operator
    by calling the > and == operators */
-bool HugeInt::operator>=(const HugeInt &tem)const
+bool HugeInt::operator>=(HugeInt &abs)
 {
-    if(*this>tem||*this==tem)
-        return true;
-    else
-        return false;
+    if(*this>abs)
+        return true;//more than return true
+    if(*this==abs)
+        return true;//equal return true
+    return false;//otherwise,return false
 }
+
 // overloaded output operator
 ostream& operator<<( ostream &output, const HugeInt &num )
 {

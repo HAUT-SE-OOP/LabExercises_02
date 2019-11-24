@@ -49,22 +49,24 @@ const String &String::operator=( const String &right )
 
 // concatenate right operand and this object and store in temp object
 /* Write the header for the operator+ member function */
-const String String::operator+(const String &string3)
+const String String::operator+( const String &string1 )
 {
-    String tem;
    /* Declare a temporary String variable named temp */
-    tem.length=length+string3.length;
+   String string3;//temporary string
    /* Set temp’s length to be the sum of the two argument Strings’ lengthes */
-   tem.sPtr = new char[ length + 100 ];
+   string3.length = strlen(sPtr) + string1.length;//Set temp’s length to be the sum of the two argument Strings’ lengthes
    /* Allocate memory for temp.length + 1 chars and assign the pointer to temp.sPtr */
+   string3.sPtr = new char [string3.length+1];
    assert( sPtr != 0 ); // terminate if memory not allocated
    /* Copy the left String argument’s contents into temp.sPtr */
-   strcpy(tem.sPtr,sPtr);
+   strcpy(string3.sPtr,sPtr);//Copy the left String argument’s contents into temp.sPtr
+   cout<<string3.sPtr<<endl;
    /* Write a call to strcat to concatenate the string in right
       onto the end of the string in temp */
-      strcat(tem.sPtr,string3.sPtr);
+   strcat(string3.sPtr,string1.sPtr);
+   cout<<string3.sPtr<<endl;
    /* Return the temporary String */
-   return tem;
+   return string3;
 } // end function operator+
 
 // overloaded output operator

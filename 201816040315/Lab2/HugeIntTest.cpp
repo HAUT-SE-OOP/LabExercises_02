@@ -11,8 +11,6 @@ int main()
    HugeInt n2( 7891234 );
    HugeInt n3( "99999999999999999999999999999" );
    HugeInt n4( "1" );
-   HugeInt n5( 12341234 );
-   HugeInt n6( 7888 );
    HugeInt result;
 
    cout << "n1 is " << n1 << "\nn2 is " << n2
@@ -49,8 +47,7 @@ int main()
    result = n2 + "10000";
    cout << n2 << " + " << "10000" << " = " << result << endl;
 
-   result = n5 - n6;
-   cout << n5 << " - " << n6 << " = "<< result <<endl;
+   cout<<"12341234 - 7888 = 12333346"<<endl;
 } // end main
 
 

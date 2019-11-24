@@ -8,27 +8,30 @@ class RationalNumber
 public:
    RationalNumber( int = 0, int = 1 ); // default constructor
    /* Write prototype for operator + */
-   RationalNumber operator+(const RationalNumber & r);
+   RationalNumber operator+(const RationalNumber &)const;
    /* Write prototype for operator - */
-   RationalNumber operator-(const RationalNumber & r);
+   RationalNumber operator-(const RationalNumber &)const;
    /* Write prototype for operator * */
-   RationalNumber operator*(const RationalNumber & r);
+   RationalNumber operator*(const RationalNumber &)const;
    /* Write prototype for operator / */
-   RationalNumber operator/(const RationalNumber & r);
+   RationalNumber operator/(const RationalNumber &)const;
+
    // relational operators
    /* Write prototype for operator > */
-   bool operator>(const RationalNumber & r);
-   /* Write prototype for operator < */
-   bool operator<(const RationalNumber & r);
+   bool operator>(const RationalNumber &)const;
+      /* Write prototype for operator < */
+   bool operator<(const RationalNumber &)const;
    /* Write prototype for operator >= */
-   bool operator>=(const RationalNumber & r);
+   bool operator>=(const RationalNumber &)const;
    /* Write prototype for operator <= */
-   bool operator<=(const RationalNumber & r);
+   bool operator<=(const RationalNumber &)const;
+
    // equality operators
    /* Write prototype for operator == */
-   bool operator==(const RationalNumber & r);
+   bool operator==(const RationalNumber &)const;
    /* Write prototype for operator != */
-   bool operator!=(const RationalNumber & r);
+   bool operator!=(const RationalNumber &)const;
+
    void printRational() const; // display rational number
 private:
    int numerator; // private variable numerator
