@@ -1,35 +1,173 @@
-// Lab 3: RationalNumber.h
-// RationalNumber class definition.
-#ifndef RATIONAL_NUMBER_H
-#define RATIONAL_NUMBER_H
+// Lab 3: RationalNumber.cpp
+// RationalNumber member-function definitions.
+#include <cstdlib>
+#include <iostream>
+using namespace std;
 
-class RationalNumber
+#include "RationalNumber.h"
+
+// RationalNumber constructor sets n and d and calls reduction
+RationalNumber::RationalNumber(int Molecules, int Deonminator)
 {
-public:
-   RationalNumber( int = 0, int = 1 ); // default constructor
-   RationalNumber operator + (const RationalNumber & ) const;/* Write prototype for operator + */
-   RationalNumber operator - (const RationalNumber & ) const;/* Write prototype for operator - */
-   RationalNumber operator * (const RationalNumber & ) const;/* Write prototype for operator * */
-   RationalNumber operator / (const RationalNumber & ) const;/* Write prototype for operator / */
+    if(Deonminator <= 0)//分母小于等于0
+        Deonminator = 1;
+        numerator = Molecules;//分子
+    denominator = Deonminator;
+}
+/* Implement the RationalNumber constructor. Validate d first to ensure that
+   it is a positive number and set it to 1 if not. Call the reduction utility
+   function at the end */
 
-   // relational operators
-   bool operator > (const RationalNumber & ) const;/* Write prototype for operator > */
-   bool operator < (const RationalNumber & ) const;/* Write prototype for operator < */
-   bool operator >= (const RationalNumber & ) const;/* Write prototype for operator >= */
-   bool operator <= (const RationalNumber & ) const;/* Write prototype for operator <= */
+// overloaded + operator
+RationalNumber RationalNumber::operator + (const RationalNumber &another)const
+{
+    RationalNumber temp;
+    temp.numerator = numerator * another.denominator + denominator * another.numerator;
+    temp.denominator = denominator *another.denominator;
+    temp.reduction();
+    return temp;
 
-   // equality operators
-   bool operator == (const RationalNumber & ) const;/* Write prototype for operator == */
-   bool operator != (const RationalNumber & ) const;/* Write prototype for operator != */
+}
+/* Write definition for overloaded operator + */
 
-   void printRational() const; // display rational number
-private:
-   int numerator; // private variable numerator
-   int denominator; // private variable denominator
-   void reduction(); // function for fraction reduction
-}; // end class RationalNumber
+// overloaded - operator
+RationalNumber RationalNumber::operator - (const RationalNumber &another) const
+{
+    RationalNumber temp;
+    temp.numerator = numerator * another.denominator - denominator * another.numerator;
+    temp.denominator = another.denominator * denominator;
+    temp.reduction();
+     return temp;
+}
+/* Write definition for overloaded operator - */
 
-#endif
+// overloaded * operator
+RationalNumber RationalNumber::operator * (const RationalNumber &another) const
+{
+    RationalNumber temp;
+    temp.numerator = numerator * another.numerator;
+    temp.denominator = denominator * another.denominator;
+    temp.reduction();
+     return temp;
+}
+/* Write definition for overloaded operator * */
+
+// overloaded / operator
+RationalNumber RationalNumber::operator / (const RationalNumber &another) const
+{
+    RationalNumber temp;
+    if(another.numerator!= 0)
+    {
+    temp.numerator = numerator * another.denominator;
+    temp.denominator = denominator * another.numerator;
+    temp.reduction();
+    }
+    else
+        cout << another.numerator;
+        return temp;
+}
+
+/* Write definition for overloaded operator /. Check if the client is
+   attempting to divide by zero and report an error message if so */
+
+// overloaded > operator
+bool RationalNumber::operator > (const RationalNumber &another) const
+{
+
+    if(numerator * another.denominator > denominator * another.numerator)
+    {
+        return true;
+    }
+    else
+        return false;
+}
+/* Write definition for operator > */
+
+// overloaded < operator
+bool RationalNumber::operator < (const RationalNumber &another) const
+{
+    if(numerator * another.denominator < denominator * another.numerator)
+    {
+        return true;
+    }
+    else
+        return false;
+}
+/* Write definition for operator < */
+
+// overloaded >= operator
+bool RationalNumber::operator >= (const RationalNumber &another) const
+{
+    if(numerator * another.denominator >= denominator * another.numerator)
+    {
+        return true;
+    }
+    else
+        return false;
+}
+/* Write definition for operator >= */
+
+// overloaded <= operator
+bool RationalNumber::operator <= (const RationalNumber &another) const
+{
+    if(numerator * another.denominator <= denominator * another.numerator)
+    {
+        return true;
+    }
+    else
+        return false;
+}
+/* Write definition for operator <= */
+
+// overloaded == operator
+bool RationalNumber::operator == (const RationalNumber &another) const
+{
+    if(numerator * another.denominator == denominator * another.numerator)
+    {
+        return true;
+    }
+    else
+        return false;
+}
+/* Write definition for operator == */
+
+// overloaded != operator
+bool RationalNumber::operator != (const RationalNumber &another) const
+{
+    if(numerator * another.denominator != denominator * another.numerator)
+    {
+        return true;
+    }
+    else
+        return false;
+}
+/* Write definition for operator != */
+
+// function printRational definition
+void RationalNumber::printRational() const
+{
+   if ( numerator == 0 ) // print fraction as zero
+      cout << numerator;
+   else if ( denominator == 1 ) // print fraction as integer
+      cout << numerator;
+   else
+      cout << numerator << '/' << denominator;
+} // end function printRational
+
+// function reduction definition
+void RationalNumber::reduction()
+{
+   int largest, gcd = 1;  // greatest common divisor;
+
+   largest = ( numerator > denominator ) ? numerator: denominator;
+
+   for ( int loop = 2; loop <= largest; loop++ )
+       if ( numerator % loop == 0 && denominator % loop == 0 )
+          gcd = loop;
+
+   numerator /= gcd;
+   denominator /= gcd;
+} // end function reduction
 
 
 /**************************************************************************
