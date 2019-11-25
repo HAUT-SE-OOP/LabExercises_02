@@ -1,0 +1,112 @@
+Lab Exercises
+Class:    1801   			Name:   朴圣源   		StuID:__201816040111__
+Date:     2019/11/21      			Score:                      		
+Lab Exercise 1 — String Concatenation
+
+
+I  Lab Objectives
+In this lab, you will practice:
+1)	Overloading the + operator to allow String objects to be concatenated.
+2)	Writing function prototypes for overloaded operators.
+3)	Using overloaded operators.
+
+II  Description of the Problem
+String concatenation（连接）requires two operands—the two strings that are to be concatenated. In the String case study, we showed how to implement an overloaded concatenation operator that concatenates the second String object to the right of the first String object, thus modifying the first String object. In some applications, it is desirable to produce a concatenated String object without modifying the String arguments. Implement operator+ to allow operations such as
+string1 = string2 + string3;
+in which neither operand is modified.
+ 
+III  Sample Output
+
+ 
+
+IV  Problem-Solving Tips
+1)	The overloaded + operator should be a member function of class String and should take one parameter, a const reference to a String.
+2)	The + operator function should use return type String.
+3)	The strcat function can be used to concatenate pointer-based strings.
+
+
+
+V  Your Solution
+ 
+
+ 
+ 
+ 
+
+Lab Exercise 2 —  Huge Integer
+
+
+I  Lab Objectives
+In this lab, you will practice:
+1)	Overloading arithmetic and comparison operators to enhance a huge integer class, HugeInt.
+2)	Writing function prototypes for overloaded operators.
+3)	Calling overloaded operator functions.
+
+II  Description of the Problem
+A machine with 32-bit integers can represent integers in the range of approximately –2 billion to +2 billion. This fixed-size restriction is rarely troublesome, but there are applications in which we would like to be able to use a much wider range of integers. This is what C++ was built to do, namely, create powerful new data types. Consider class HugeInt of Figs. 10.17–10.19. Study the class carefully, then overload the relational and equality operators. [Note: We do not show an assignment operator or copy constructor for class HugeInt, because the assignment operator and copy constructor provided by the compiler are capable of copying the entire array data member properly.]
+
+III  Sample Output
+ 
+IV  Problem-Solving Tips
+You can implement the !=, >, >= and <= operators in terms of the overloaded == and < operators.
+V  Your Solution
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Lab Exercise 3 —  Rational Numbers
+
+
+I  Lab Objectives
+In this lab, you will practice:
+1)	Overloading operators to create a class capable of storing rational numbers (fractions) and performing rational number arithmetic.
+2)	Writing function prototypes for overloaded operators.
+3)	Implementing overloaded operator functions.
+The follow-up questions and activities also will give you practice:
+1)	Overloading the << operator.
+2)	Making a class more robust to prevent runtime errors.
+
+II  Description of the Problem
+Create a class RationalNumber(fractions) with the following capabilities:
+1)	Create a constructor that prevents a 0 denominator in a fraction, reduces or simplifies fractions that are not in reduced form and avoids negative denominators.
+2)	Overload the addition, subtraction, multiplication and division operators for this class.
+3)	Overload the relational and equality operators for this class.
+
+III  Sample Output
+ 
+IV  Problem-Solving Tips
+1)	When comparing RationalNumbers, you can cast the numerator to a double and then divide by the denominator to determine the value of that RationalNumber as a double. The <=, >=, > and != operators can be implemented in terms of == and <.
+2)	To implement the arithmetic operators, use the following formulas:
+Addition: (a/b) + (c/d) = (ad + bc) / (bd).
+Subtraction: (a/b)- (c/d) = (ad - bc) / (bd).
+Multiplication: (a/b) * (c/d) = (ac) / (bd).
+Division: (a/b) / (c/d) = (ad) / (bc).
+Remember to check for division by zero.
+
+V  Your Solution
+
+
+ 
+ 
+ 
+ 
+  
+VI  Follow-Up Questions and Activities
+1. Rewrite the printRational member function as an overloaded << friend function.
+class{
+friend std::ostream &operator<<( std::ostream & , const RationalNumber & ); }
+2. Make the RationalNumber class more robust by providing additional tests for division by zero in each of the relational operators that divides a numerator by a denominator.
+
+
+3. Is it possible to add another overloaded operator> function that returns a pointer to the larger of the two rational numbers? Why or why not?、
+
+No,because doing so will result in a resource leak.If the return value is a pointer,then the pointer is an active type,and the returned type is not secure.
+
