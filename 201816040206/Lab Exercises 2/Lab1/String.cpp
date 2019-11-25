@@ -54,11 +54,11 @@ const String String::operator+(const String &a)
     String temp;
    /* Declare a temporary String variable named temp */
     temp.length=length+a.length;
-   /* Set tempï¿½s length to be the sum of the two argument Stringsï¿½ lengthes */
+   /* Set temp’s length to be the sum of the two argument Strings’ lengthes */
    temp.sPtr=new char[temp.length+1];
    /* Allocate memory for temp.length + 1 chars and assign the pointer to temp.sPtr */
    assert( temp.sPtr != 0 ); // terminate if memory not allocated
-   /* Copy the left String argumentï¿½s contents into temp.sPtr */
+   /* Copy the left String argument’s contents into temp.sPtr */
    strcpy(temp.sPtr, sPtr);
    strcat(temp.sPtr, a.sPtr);
    //strcpy(temp.sPtr,strcat(this->sPtr,a.sPtr));
