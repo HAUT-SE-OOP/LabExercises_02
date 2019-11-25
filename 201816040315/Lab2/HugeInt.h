@@ -22,28 +22,14 @@ public:
    // addition operator;
    // HugeInt + string that represents large integer value
    HugeInt operator+( const char * ) const;
-   // operator*()const;
 
-   //subtraction operator;HugeInt + HugeInt
-   HugeInt operator-( const HugeInt & ) const;
-   //subtraction operator; HugeInt + int
-   HugeInt operator-( int ) const;
-
-   // subtraction operator;
-   // HugeInt + string that represents large integer value
-   HugeInt operator-( const char * )const;
-
-
-
-
-   //Overloading six relational operators
-   bool operator<( HugeInt &);
-   bool operator>( HugeInt &);
-   bool operator==(HugeInt &);
-   bool operator!=(HugeInt &);
-   bool operator<=(HugeInt &);
-   bool operator>=(HugeInt &);
-
+   /* Write prototypes for the six relational and equality operators */
+   bool operator==( HugeInt & );//equal operator
+   bool operator!=( HugeInt & );//not equal operator
+   bool operator < (HugeInt & );// less than operator
+   bool operator > (HugeInt & );//more than operator
+   bool operator >=(HugeInt & );//more than and equal operator
+   bool operator <=(HugeInt & );//less than and equal operator
 
    int getLength() const;
 private:

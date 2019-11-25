@@ -14,8 +14,8 @@ int main()
    cout << "string1 = string2 + string3\n";
    /* Write a statement to concatenate string2 and string3,
       and assign the result to string1 */
-     string1=string2+string3;
-   cout << "\"" << string1 << "\" = \"" << string2 << "\" + \""
+   string1=string2+string3;
+   cout << "\"" << string1<< "\" = \"" << string2<< "\" + \""
       << string3 << "\"" << endl;
 } // end main
 

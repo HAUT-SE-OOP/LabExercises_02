@@ -10,17 +10,17 @@ using namespace std;
 
 class String
 {
-	friend ostream& operator<<(ostream& output, const String& s);
+   friend ostream &operator<<( ostream &output, const String &s );
 public:
-	String(const char* const = ""); // conversion constructor
-	String(const String&); // copy constructor
-	~String(); // destructor
-	const String& operator=(const String&);
-	/* Write a prototype for the operator+ member function */
-    String operator+(const String&);
+   String( const char * const = "" ); // conversion constructor
+   String( const String & ); // copy constructor
+   ~String(); // destructor
+   const String &operator=( const String & );
+   /* Write a prototype for the operator+ member function */
+   const String operator+( const String & );//addition
 private:
-	char* sPtr; // pointer to start of string
-	int length; // string length
+   char *sPtr; // pointer to start of string
+   int length; // string length
 }; // end class String
 
 #endif
