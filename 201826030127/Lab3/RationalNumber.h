@@ -1,3 +1,6 @@
+#ifndef RATIONAL_NUMBERS_H_INCLUDED
+#define RATIONAL_NUMBERS_H_INCLUDED
+
 // Lab 3: RationalNumber.h
 // RationalNumber class definition.
 #ifndef RATIONAL_NUMBER_H
